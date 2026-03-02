@@ -26,9 +26,9 @@ export const links: DynamicLink[] = [
     icon: { prefix: 'fas', name: 'folder' },
   },
   {
-    name: 'Steam Roulette',
-    url: 'https://steam.chis.dev/',
-    icon: { prefix: 'fab', name: 'steam' },
+    name: 'SyncLounge',
+    url: 'https://lounge.chis.dev/',
+    icon: { prefix: 'fas', name: 'couch' },
   },
   {
     name: 'Phase10 Randomizer',
