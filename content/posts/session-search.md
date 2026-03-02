@@ -122,7 +122,7 @@ The escalation strategy is: Level 1 to find the session, Level 2 to find the exa
 
 ## Embedding Pipeline
 
-The tool uses [Qwen3-Embedding-0.6B](https://huggingface.co/Qwen/Qwen3-Embedding-0.6B) — a 600M parameter embedding model that produces 1024-dimensional vectors with a 32K token context window. It runs on an RTX 4060 via llama.cpp's embedding server, routed through a [LiteLLM](https://github.com/BerriAI/litellm) proxy on my homelab — the same infrastructure that serves local models for my [AI code review skills](/posts/ai-code-review).
+The tool uses [Qwen3-Embedding-0.6B](https://huggingface.co/Qwen/Qwen3-Embedding-0.6B) — a 600M parameter embedding model that produces 1024-dimensional vectors with a 32K token context window. It runs on an RTX 4060 via llama.cpp's embedding server, routed through a [LiteLLM](https://github.com/BerriAI/litellm) proxy on my homelab — the same infrastructure that serves local models for my [AI code review skills](/ai-code-review).
 
 ### Endpoint Detection
 

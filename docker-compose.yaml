@@ -2,72 +2,23 @@ networks:
   public:
     external: true
 services:
-  app-build:
-    image: node:24.3-alpine
-    user: "1000:1000"
-    container_name: chis-blog-build
-    pull_policy: always
-    environment:
-      - NODE_ENV=development
-    volumes:
-      - .:/app
-    working_dir: /app
-    command: sh -c "rm -rf node-modules/ && npm install && npm run build"
-    labels:
-      - "traefik.enable=false"
-    profiles:
-      - build
-
-  app-dev:
-    image: node:24.3-alpine
-    user: "1000:1000"
-    container_name: chis-blog-dev
-    pull_policy: always
-    environment:
-      - NODE_ENV=development
-    ports:
-      - 5173:5173
-    volumes:
-      - .:/app
-    working_dir: /app
-    command: sh -c "rm -rf node-modules/ && npm install && npm run dev"
-    labels:
-      - "traefik.enable=false"
-    profiles:
-      - dev
-
-  app-test:
-    image: node:24.3-alpine
-    user: "1000:1000"
-    container_name: chis-blog-test
-    pull_policy: always
-    environment:
-      - NODE_ENV=test
-    volumes:
-      - .:/app
-    working_dir: /app
-    command: sh -c "rm -rf node-modules/ && npm install && npm run test -- --reporter verbose --run"
-    labels:
-      - "traefik.enable=false"
-    profiles:
-      - test
-  
   app:
-    image: nginx
+    command: sh -c "npm ci && npm run build && node .next/standalone/server.js"
     container_name: chis-blog
-    restart: always
-    pull_policy: always
-    volumes:
-      - ./dist:/usr/share/nginx/html:ro
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    environment:
+      - HOSTNAME=0.0.0.0
+      - PORT=3000
+    image: node:24-alpine
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.blog.rule=Host(`chis.dev`)
+      - traefik.http.routers.blog.entrypoints=websecure
+      - traefik.http.routers.blog.tls.certresolver=cloudflare
+      - traefik.http.services.blog.loadbalancer.server.port=3000
+      - traefik.docker.network=public
     networks:
       - public
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.blog.rule=Host(`chis.dev`)"
-      - "traefik.http.routers.blog.entrypoints=websecure"
-      - "traefik.http.routers.blog.tls.certresolver=cloudflare"
-      - "traefik.http.services.blog.loadbalancer.server.port=80"
-      - "traefik.docker.network=public"
-    profiles:
-      - prod
+    restart: always
+    volumes:
+      - .:/app
+    working_dir: /app

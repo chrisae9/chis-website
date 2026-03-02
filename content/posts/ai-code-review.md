@@ -71,7 +71,7 @@ Behind the scenes, Gemini ran `gemini -y -m gemini-3.1-pro-preview -p "..." > /t
 
 ### Debugging with a Fresh Perspective
 
-My [tmux status hook](/posts/tmux-status) had inverted colors — showing green when the agent was busy and default when it was waiting for input. I'd been staring at the script and couldn't see the bug.
+My [tmux status hook](/tmux-status) had inverted colors — showing green when the agent was busy and default when it was waiting for input. I'd been staring at the script and couldn't see the bug.
 
 ```
 /codex Review the tmux-status.sh hook script at ~/.dotfiles/claude/hooks/tmux-status.sh -
@@ -84,7 +84,7 @@ Codex ran in `--sandbox read-only` mode, read the script, and found the logic in
 
 ### Dotfiles Infrastructure Review
 
-OpenCode defaults to a local Qwen 3.5 model running on my homelab server — an RTX 3090 serving models through [llama.cpp](https://github.com/ggml-org/llama.cpp) behind a [LiteLLM](https://github.com/BerriAI/litellm) proxy. Same server that runs the Qwen3-Embedding-0.6B model powering my [session search skill](/posts/session-search). No API cost, no tokens leaving my network. I used it to review my entire dotfiles repo:
+OpenCode defaults to a local Qwen 3.5 model running on my homelab server — an RTX 3090 serving models through [llama.cpp](https://github.com/ggml-org/llama.cpp) behind a [LiteLLM](https://github.com/BerriAI/litellm) proxy. Same server that runs the Qwen3-Embedding-0.6B model powering my [session search skill](/session-search). No API cost, no tokens leaving my network. I used it to review my entire dotfiles repo:
 
 ```
 /opencode Review this dotfiles repository and suggest improvements. Look at the update
