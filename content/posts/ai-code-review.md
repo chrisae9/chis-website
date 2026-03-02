@@ -1,6 +1,6 @@
 ---
 title: Using Other AI Models as Claude Code Reviewers
-date: 2026-02-27
+date: 2026-02-08
 summary: Claude Code skills that shell out to Gemini CLI, Codex CLI, and OpenCode to get second opinions on code — all in read-only mode, writing to /tmp, without leaving your session.
 category: AI
 tags: [AI, Claude Code, Code Review]
@@ -84,7 +84,7 @@ Codex ran in `--sandbox read-only` mode, read the script, and found the logic in
 
 ### Dotfiles Infrastructure Review
 
-OpenCode defaults to a local Qwen model, which means no API cost. I used it to review my entire dotfiles repo:
+OpenCode defaults to a local Qwen 3.5 model running on my homelab server — an RTX 3090 serving models through [llama.cpp](https://github.com/ggml-org/llama.cpp) behind a [LiteLLM](https://github.com/BerriAI/litellm) proxy. Same server that runs the Qwen3-Embedding-0.6B model powering my [session search skill](/posts/session-search). No API cost, no tokens leaving my network. I used it to review my entire dotfiles repo:
 
 ```
 /opencode Review this dotfiles repository and suggest improvements. Look at the update
