@@ -7,7 +7,6 @@ services:
     container_name: chis-blog
     environment:
       - HOSTNAME=0.0.0.0
-      - PORT=3000
     image: node:24-alpine
     labels:
       - traefik.enable=true
